@@ -33,7 +33,7 @@ void Writer::close()
   // Your code here.
   if (!is_closed_)
   {
-    is_closed_ = ture;
+    is_closed_ = true;
     bytes_.emplace(string(1, EOF));
   }
 }
