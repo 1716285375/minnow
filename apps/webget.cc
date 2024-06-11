@@ -4,6 +4,7 @@
 #include <iostream>
 #include <span>
 #include <string>
+#include <format>
 
 using namespace std;
 
@@ -11,13 +12,14 @@ void get_URL( const string& host, const string& path )
 {
   TCPSocket sock {};
   std::string buf;
-  sock.connect(Address(host, path));
+  sock.connect(Address(host, "http"));
   sock.write(format("GET {} HTTP/1.1\r\n"
                     "Host: {}\r\n"
                     "Connection: close\r\n"
                     "\r\n",
                     path,
                     host));
+  sock.shutdown(SHUT_WR);
   while (!sock.eof())
   {
     sock.read(buf);

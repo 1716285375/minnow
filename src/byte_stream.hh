@@ -3,6 +3,7 @@
 #include <cstdint>
 #include <string>
 #include <string_view>
+#include <queue>
 
 class Reader;
 class Writer;
@@ -28,7 +29,7 @@ protected:
   uint64_t num_bytes_push_ {};
   uint64_t num_bytes_pop_ {};
   uint64_t num_bytes_buffer_ {};
-  std::queue<string> bytes_ {};
+  std::queue<std::string> bytes_ {};
   std::string_view view_wnd_ {};
   bool is_closed_ {};
 };
