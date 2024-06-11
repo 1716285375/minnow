@@ -14,11 +14,14 @@ void get_URL( const string& host, const string& path )
   sock.connect(Address(host, path));
   sock.write(format("GET {} HTTP/1.1\r\n"
                     "Host: {}\r\n"
-                    "Connection: close\r\n\r\n"));
+                    "Connection: close\r\n"
+                    "\r\n",
+                    path,
+                    host));
   while (!sock.eof())
   {
-    auto data_recv = sock.read(buf);
-    std::cout << data_recv;
+    sock.read(buf);
+    std::cout << buf;
     buf.clear();
   }
   sock.close();
